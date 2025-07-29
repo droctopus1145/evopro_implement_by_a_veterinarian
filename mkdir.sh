@@ -1,6 +1,8 @@
 x=$1
 echo "start script"
 mkdir alphafold
+mkdir input
+mkdir output
 echo "successfully create alphafold"
 cd alphafold
 for i in $(seq 1 $x);do
