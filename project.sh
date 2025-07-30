@@ -45,7 +45,7 @@ for a in atomsA:
 
         if dist <= cutoff:
             weighted_pae+=(70-data["pae"][int(a.resi)-1][int(b.resi)-1]-data["pae"][int(b.resi)-1][int(a.resi)-1])/70
-            print(f"resi in a: {a.resi} in b : {b.resi}")
+            #print(f"resi in a: {a.resi} in b : {b.resi}")
 print(f"{number}_weighted_pae:{weighted_pae:.2f}")#caculate weighted pae
 
 pymol.finish_launching()
@@ -54,6 +54,8 @@ cmd.load("alphafold/round'$x'/cut/cut"+number+".cif","mol2")
 cmd.align("mol1","mol2")
 rms_cur = cmd.rms_cur("mol1","mol2")
 print(f"{number}_rmsd:{rms_cur:.2f}")
+score=5*rms_cur-average_plddt/10-weighted_pae
+print(f"{number}_score:{score:.2f}")
 '
 done;
 echo "finish analyse"
